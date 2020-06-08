@@ -26,9 +26,9 @@ var drawReact = function (ctx, x, y, width, height, color) {
 };
 
 var drawText = function (ctx, text, x, y, font, color) {
-  context.font = font || '16px PT Mono';
+  ctx.font = font || '16px PT Mono';
   ctx.fillStyle = color || '#000000';
-  ctx.fillRect(text, x, y);
+  ctx.fillText(text, x, y);
 };
 
 var getMaxTime = function (arr) {
@@ -51,17 +51,17 @@ window.renderStatistics = function (ctx, players, times) {
   drawReact(ctx, Cloud.X + Gap.Gap, Cloud.Y + Gap.Gap, Cloud.Width, Cloud.Height);
   drawReact(ctx, Cloud.X, Cloud.Y, Cloud.Width, Cloud.Height, '#FFFFFF');
 
-  drawText(ctx, 'Ура вы победили!', Cloud.X + Gap.Gap * 2, Cloud.Y + Gap.Gap * 2);
-  drawText(ctx, 'Список резульатов', Cloud.X + Gap.Gap * 2, Cloud.Y + Gap.Gap);
+  drawText(ctx, 'Ура вы победили!', Cloud.X + Gap.Gap * 2, Cloud.Y + Gap.Gap * 3);
+  drawText(ctx, 'Список резульатов', Cloud.X + Gap.Gap * 2, Cloud.Y + Gap.Gap * 5);
 
   var maxTime = getMaxTime (times);
 
   for (var i = 0; i < players.length; i++) {
-    var barItemHeight = (Bar.Height * temes[i]) / maxTime;
+    var barItemHeight = (Bar.Height * times[i]) / maxTime;
     var barX = Cloud.X + Gap.Gap * 3 + Bar.Gap * 2 * i;
 
     drawReact(ctx, barX, Cloud.Bottom - Gap.Gap * 3 - Gap.Font - barItemHeight, Bar.Width, barItemHeight, players[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : getRandomBlue());
-    drawText(ctx, players[i], Cloud.Bottom - Gap.Gap * 2);
+    drawText(ctx, players[i], barX, Cloud.Bottom - Gap.Gap * 2);
     drawText(ctx, Math.round(times[i]), barX, Cloud.Bottom - Gap.Gap * 3 - Gap.Font - barItemHeight);
   }
 };
