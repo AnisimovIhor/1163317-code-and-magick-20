@@ -2,22 +2,22 @@
 'use strict';
 
 var Cloud = {
-  Width: 420,
-  Height: 270,
-  X: 100,
-  Y: 10,
-  Bottom: 280
+  width: 420,
+  height: 270,
+  x: 100,
+  y: 10,
+  bottom: 280
 };
 
 var Bar = {
-  Width: 40,
-  Height: 150,
-  Gap: 50
+  width: 40,
+  height: 150,
+  gap: 50
 };
 
 var Gap = {
-  Gap: 10,
-  Font: 15
+  gap: 10,
+  font: 15
 };
 
 var drawReact = function (ctx, x, y, width, height, color) {
@@ -48,20 +48,20 @@ var getRandomBlue = function () {
 };
 
 window.renderStatistics = function (ctx, players, times) {
-  drawReact(ctx, Cloud.X + Gap.Gap, Cloud.Y + Gap.Gap, Cloud.Width, Cloud.Height);
-  drawReact(ctx, Cloud.X, Cloud.Y, Cloud.Width, Cloud.Height, '#FFFFFF');
+  drawReact(ctx, Cloud.x + Gap.gap, Cloud.y + Gap.gap, Cloud.width, Cloud.height);
+  drawReact(ctx, Cloud.x, Cloud.y, Cloud.width, Cloud.height, '#FFFFFF');
 
-  drawText(ctx, 'Ура вы победили!', Cloud.X + Gap.Gap * 2, Cloud.Y + Gap.Gap * 3);
-  drawText(ctx, 'Список резульатов', Cloud.X + Gap.Gap * 2, Cloud.Y + Gap.Gap * 5);
+  drawText(ctx, 'Ура вы победили!', Cloud.x + Gap.gap * 2, Cloud.y + Gap.gap * 3);
+  drawText(ctx, 'Список резульатов', Cloud.x + Gap.gap * 2, Cloud.y + Gap.gap * 5);
 
   var maxTime = getMaxTime (times);
 
   for (var i = 0; i < players.length; i++) {
     var barItemHeight = (Bar.Height * times[i]) / maxTime;
-    var barX = Cloud.X + Gap.Gap * 3 + Bar.Gap * 2 * i;
+    var barX = Cloud.X + Gap.gap * 3 + Bar.gap * 2 * i;
 
-    drawReact(ctx, barX, Cloud.Bottom - Gap.Gap * 3 - Gap.Font - barItemHeight, Bar.Width, barItemHeight, players[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : getRandomBlue());
-    drawText(ctx, players[i], barX, Cloud.Bottom - Gap.Gap * 2);
-    drawText(ctx, Math.round(times[i]), barX, Cloud.Bottom - Gap.Gap * 3 - Gap.Font - barItemHeight);
+    drawReact(ctx, barX, Cloud.bottom - Gap.gap * 3 - Gap.font - barItemHeight, Bar.width, barItemHeight, players[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : getRandomBlue());
+    drawText(ctx, players[i], barX, Cloud.bottom - Gap.gap * 2);
+    drawText(ctx, Math.round(times[i]), barX, Cloud.bottom - Gap.gap * 3 - Gap.font - barItemHeight);
   }
 };
