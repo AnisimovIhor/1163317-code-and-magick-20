@@ -1,5 +1,6 @@
 
-//удаляет класс и показывает попап
+// удаляет класс и показывает попап
+// eslint-disable-next-line strict
 var setupSelector = document.querySelector('.setup');
 setupSelector.classList.remove('hidden');
 
@@ -12,6 +13,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
 
 var WIZARD_NAMES = ['Дамблдор', 'Волдеморт', 'Доктор Стрендж', 'Гарри Поттер'];
 
+// eslint-disable-next-line no-unused-vars
 var wizards = [
   {
     name: WIZARD_NAMES[0],

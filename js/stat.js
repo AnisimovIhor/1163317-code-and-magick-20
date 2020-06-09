@@ -104,3 +104,4 @@ window.renderStatistics = function (ctx, players, times) {
         Cloud.bottom - Gap.gap * 3 - Gap.font - barItemHeight);
   }
 };
+
