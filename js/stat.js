@@ -48,20 +48,59 @@ var getRandomBlue = function () {
 };
 
 window.renderStatistics = function (ctx, players, times) {
-  drawReact(ctx, Cloud.x + Gap.gap, Cloud.y + Gap.gap, Cloud.width, Cloud.height);
-  drawReact(ctx, Cloud.x, Cloud.y, Cloud.width, Cloud.height, '#FFFFFF');
+  drawReact(
+      ctx,
+      Cloud.x + Gap.gap,
+      Cloud.y + Gap.gap,
+      Cloud.width,
+      Cloud.height
+  );
+  drawReact(
+      ctx,
+      Cloud.x,
+      Cloud.y,
+      Cloud.width,
+      Cloud.height,
+      '#FFFFFF'
+  );
+  drawText(
+      ctx,
+      'Ура вы победили!',
+      Cloud.x + Gap.gap * 2,
+      Cloud.y + Gap.gap * 3
+  );
+  drawText(
+      ctx,
+      'Список резульатов',
+      Cloud.x + Gap.gap * 2,
+      Cloud.y + Gap.gap * 5
+  );
 
-  drawText(ctx, 'Ура вы победили!', Cloud.x + Gap.gap * 2, Cloud.y + Gap.gap * 3);
-  drawText(ctx, 'Список резульатов', Cloud.x + Gap.gap * 2, Cloud.y + Gap.gap * 5);
-
-  var maxTime = getMaxTime (times);
+  var maxTime = getMaxTime(times);
 
   for (var i = 0; i < players.length; i++) {
     var barItemHeight = (Bar.Height * times[i]) / maxTime;
     var barX = Cloud.X + Gap.gap * 3 + Bar.gap * 2 * i;
 
-    drawReact(ctx, barX, Cloud.bottom - Gap.gap * 3 - Gap.font - barItemHeight, Bar.width, barItemHeight, players[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : getRandomBlue());
-    drawText(ctx, players[i], barX, Cloud.bottom - Gap.gap * 2);
-    drawText(ctx, Math.round(times[i]), barX, Cloud.bottom - Gap.gap * 3 - Gap.font - barItemHeight);
+    drawReact(
+        ctx,
+        barX,
+        Cloud.bottom - Gap.gap * 3 - Gap.font - barItemHeight,
+        Bar.width,
+        barItemHeight,
+        players[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : getRandomBlue());
+
+
+    drawText(
+        ctx,
+        players[i],
+        barX,
+        Cloud.bottom - Gap.gap * 2
+    );
+    drawText(
+        ctx,
+        Math.round(times[i]),
+        barX,
+        Cloud.bottom - Gap.gap * 3 - Gap.font - barItemHeight);
   }
 };
